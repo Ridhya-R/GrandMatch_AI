@@ -1,0 +1,763 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{parskip} 
+\usepackage{blindtext}
+\usepackage{listings}
+\usepackage{sectsty}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{float}
+\chapterfont{\centering}
+\setlength{\parindent}{1 cm}
+\setlength{\parskip}{6pt}
+\usepackage{comment}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{fancyhdr}
+\usepackage{mathtools, amssymb}
+\usepackage{chemformula}
+\usepackage{bm}
+\usepackage[version=4]{mhchem}
+\usepackage[utf8]{inputenc}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\usepackage[pages=some]{background}
+\usepackage{subcaption}
+\frenchspacing
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.98}
+
+\lstdefinestyle{custompython}{
+  language=Python,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue},
+  commentstyle=\color{codegreen},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+  numbersep=5pt,
+  tabsize=2,
+  captionpos=b,
+  backgroundcolor=\color{backcolour}
+}
+
+\let\mtcontentsname\contentsname
+\renewcommand\contentsname{\MakeUppercase\mtcontentsname}
+
+\titleformat{\chapter}[display]
+  {\normalfont\sfamily\Large\bfseries\centering}
+  {\chaptertitlename\ \thechapter}{0pt}{\Large}
+
+\titlespacing*{\chapter}{0pt}{0pt}{6pt}
+\titlespacing*{\section}{0pt}{0pt}{6pt}
+\titlespacing*{\subsection}{0pt}{0pt}{6pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{6pt}
+
+\titleformat*{\section}{\normalfont\sfamily\Large\bfseries}
+\titleformat*{\subsection}{\normalfont\sfamily\large\bfseries}
+\titleformat*{\paragraph}{\normalfont\large\sfamily}
+\titleformat*{\subsubsection}{\normalfont\sfamily\large\itshape}
+\usepackage{etoolbox}
+
+\makeatletter
+\let\oldcite\cite
+\pretocmd{\listoffigures}{\def\cite{\ignorespaces\@gobble}}{}{}
+\apptocmd{\listoffigures}{\let\cite\oldcite}{}{}
+\makeatother
+
+\makeatletter
+\let\oldcite\cite
+\pretocmd{\listoftables}{\def\cite{\ignorespaces\@gobble}}{}{}
+\apptocmd{\listoftables}{\let\cite\oldcite}{}{}
+\makeatother
+
+\begin{document}
+
+% ------------------- TITLE PAGE -------------------
+\begin{titlepage}
+	\centering
+	\begin{minipage}{0.9\linewidth}
+		\centering
+		
+		\vspace*{1.5cm}
+		% Project title
+		{\Large\textbf{\uppercase{SAFE STEER AI -- DRIVER MONITORING SYSTEM}}\par}
+		\vspace{1cm}
+		
+		{\uppercase{\large{{MINI PROJECT REPORT}\par}}}
+		\vspace{0.8cm}   
+		
+		% Author details
+		\large{Submitted by}
+		\vspace{0.5cm}
+		
+		{\large \textbf{ATHIRA S \\ CHN25MCA-2020}\par}
+		\vspace{0.8cm}
+		
+		to
+		\vspace{0.5cm}
+			
+		\textit{APJ Abdul Kalam Technological University \\ in partial fulfillment of the requirements for the award of Degree \\ in \textbf{Master of Computer Applications}}
+		
+		\vspace{1.5cm}
+		\includegraphics[width=0.28\textwidth]{CEC.png}
+		\vspace{1cm}
+		
+		\large {\textbf{DEPARTMENT OF COMPUTER ENGINEERING\\
+			COLLEGE OF ENGINEERING CHENGANNUR, ALAPPUZHA\\
+    			OCTOBER 2026\\}}
+	\end{minipage}
+\end{titlepage}
+
+\thispagestyle{empty}
+\clearpage
+
+% ------------------- CERTIFICATE PAGE -------------------
+\thispagestyle{empty}
+\begin{center}	
+	\vspace*{1.5cm}
+	
+	\textbf{\Large DEPARTMENT OF COMPUTER ENGINEERING \\}	
+	\textbf{\large COLLEGE OF ENGINEERING CHENGANNUR\\}	
+	\textbf{\large ALAPPUZHA}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=0.25\textwidth]{CEC.png}	
+\end{center}
+
+\begin{center}
+	\textbf{\Large CERTIFICATE}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{onehalfspace}
+\textit{This is to certify that the project report titled \textbf{SAFE STEER AI -- DRIVER MONITORING SYSTEM} is a bonafide record of the \textbf{20MCA245 MINI PROJECT} presented by \textbf{ATHIRA S} (CHN25MCA-2020), Third Semester Master of Computer Applications student, under our guidance and supervision. This project is submitted in partial fulfillment of the requirements for the award of the degree \textbf{Master of Computer Applications} of \textbf{APJ Abdul Kalam Technological University}.}
+\end{onehalfspace}
+
+\vspace*{1.5cm}
+
+% Signature Block
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l l}
+\textbf{Smt. Arya Jayakumar} & \textbf{Smt. Josmi Jose} \\
+Project Guide & Project Coordinator \\
+Assistant Professor & Assistant Professor \\
+Dept. of Computer Engineering & Dept. of Computer Engineering \\
+\end{tabular*}
+
+\vspace{2.5cm}
+
+\begin{center}
+\textbf{Dr. Renu George} \\
+Professor \& Head of the Department \\
+Dept. of Computer Engineering \\
+College of Engineering Chengannur
+\end{center}
+
+\clearpage
+
+\pagenumbering{roman}
+
+% ------------------- DECLARATION PAGE -------------------
+\begin{center} 
+\Large {\bf \uppercase{Declaration}} 
+\end{center} 
+\vspace{1cm} 
+
+\noindent I undersigned hereby declare that the project report “\textbf{SAFE STEER AI -- DRIVER MONITORING SYSTEM}", submitted for partial fulfillment of the requirements for the award of degree of Master of Computer Applications of the APJ Abdul Kalam Technological University, Kerala is a bonafide work done by me under the supervision of \textbf{Smt. Arya Jayakumar}, Assistant Professor, Department of Computer Engineering. This submission represents my ideas in my own words, and where ideas or words of others have been included, I have adequately and accurately cited and referenced the original sources. I also declare that I have adhered to the ethics of academic honesty and integrity and have not misrepresented or fabricated any data, idea, fact, or source in this submission. I understand that any violation of the above will be a cause for disciplinary action by the institute and/or the University and can also evoke penal action from the sources which have thus not been properly cited or from whom proper permission has not been obtained. This report has not been previously formed the basis for the award of any degree, diploma, or similar title of any other University.
+
+\vspace{3.5cm}
+
+\noindent\begin{minipage}{0.45\linewidth}
+\begin{flushleft}
+\textbf{Place:} Chengannur \\
+\textbf{Date:} 
+\end{flushleft} 
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+\begin{flushright}
+\textbf{ATHIRA S}\\
+\textbf{CHN25MCA-2020}\\
+\end{flushright} 
+\end{minipage}
+
+\addcontentsline{toc}{chapter}{Declaration}
+\clearpage
+
+% ------------------- ACKNOWLEDGEMENT PAGE -------------------
+\begin{center}
+ \Large {\bf \uppercase{Acknowledgement}}
+\end{center}
+
+\addcontentsline{toc}{chapter}{Acknowledgement}
+\vspace{1.5cm}
+
+\noindent This work would not have been possible without the support and encouragement of many people. First and foremost, I give thanks to Almighty God who gave me the inner strength, clarity, and perseverance to complete this project successfully.
+
+\vspace{0.3cm}
+\noindent I would like to express my sincere gratitude to \textbf{Dr. Hari V.S}, Principal, College of Engineering Chengannur, for providing state-of-the-art facilities and a conducive academic environment for the completion and presentation of this project.
+
+\vspace{0.3cm}
+\noindent Special thanks to \textbf{Dr. Renu George}, Head of the Department of Computer Engineering, for her exceptional guidance, administrative support, and continuous encouragement throughout the semester.
+
+\vspace{0.3cm}
+\noindent I express my heartfelt gratitude to my project guide, \textbf{Smt. Arya Jayakumar}, Assistant Professor, Department of Computer Engineering, for her invaluable advice, technical suggestions, and patient mentoring during each phase of this project.
+
+\vspace{0.3cm}
+\noindent I also express my sincere thanks to the project coordinators \textbf{Smt. Josmi Jose}, \textbf{Smt. Santhy Viswam}, and \textbf{Smt. Celin T}, Assistant Professors, Department of Computer Engineering, for their systematic evaluations, constructive suggestions, and timely feedback.
+
+\vspace{0.3cm}
+\noindent Lastly, I thank my family, faculty members, and dear friends for their unconditional encouragement, cooperation, and companionship throughout this endeavor.
+
+\vspace{1cm}
+\begin{flushright}
+  \textbf{ATHIRA S\\CHN25MCA-2020}
+\end{flushright}
+
+\clearpage
+
+% ------------------- ABSTRACT -------------------
+\begin{center}
+    \Large\textbf{ABSTRACT}  
+\end{center} 
+\vspace{1cm}
+
+\textbf{"Safe Steer AI -- Driver Monitoring System"} (also referred to as SentriDrive) is an intelligent, edge-capable computer vision platform designed to monitor driver attentiveness in real time and mitigate fatal vehicular accidents caused by drowsiness and fatigue. Driver fatigue and inattentive behavior represent critical hazards in commercial logistics, transport fleets, and everyday transit. Traditional fleet tracking methods depend largely on retrospective manual supervision, passive GPS route logs, and post-incident investigation, which fail to detect and prevent imminent crashes caused by micro-sleep or momentary distractions. 
+
+Safe Steer AI bridges this safety gap by delivering proactive, vision-based monitoring directly within the vehicle cabin. Utilizing live camera video streams, the system deploys lightweight facial landmark recognition algorithms based on OpenCV and MediaPipe Face Mesh to continuously track facial orientation, eye closures, and blink frequency using Eye Aspect Ratio (EAR) calculations. Upon identifying sustained eye closure or fatigue symptoms exceeding predefined threshold limits, the system triggers instantaneous multi-stage auditory safety countermeasures, including synthetic voice notifications, cockpit buzzer beeps, and pulsed vehicle horn klaxons, alongside emergency call simulation routines. 
+
+Simultaneously, real-time distraction events, timestamps, severity indicators, and driver telemetry are compiled into a tamper-proof SQLite database to ensure verifiable audit trails. The system provides a web-based management portal developed using Python Flask, HTML, CSS, and JavaScript, enabling fleet administrators to track vehicle assignments, manage driver credentials, evaluate real-time incident reports, and review longitudinal safety analytics. By integrating responsive computer vision edge intelligence with centralized administrative controls, Safe Steer AI provides a dependable, scalable, and cost-effective driver guardian for modern transportation systems.
+
+\vspace{0.5cm}
+\addcontentsline{toc}{chapter}{Abstract}
+\clearpage
+
+% ------------------- TOC, LOF, LOT -------------------
+\tableofcontents
+\renewcommand*\contentsname{CONTENTS}
+
+\newpage
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\newpage
+\renewcommand{\listtablename}{LIST OF TABLES}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\clearpage
+
+% ------------------- CHAPTER 1: INTRODUCTION -------------------
+\renewcommand{\chaptername}{CHAPTER}
+\chapter{INTRODUCTION}
+\pagenumbering{arabic}
+
+\section{Project Area}
+\par
+Commercial fleet management and road transportation infrastructure demand continuous driver monitoring to safeguard human lives, reduce cargo damages, and maintain transit efficiency. Across global transport networks, driver fatigue, microsleep, and cognitive distraction remain leading contributors to catastrophic vehicular collisions. Long-haul truck drivers, delivery operators, and public transit drivers are often subjected to extended shifts, irregular work schedules, and monotonous highway environments, conditions that heighten the risk of drowsiness.
+
+Conventional commercial fleet monitoring systems rely primarily on basic Global Positioning System (GPS) telematics, speed limit thresholds, and post-accident electronic logs. While these tools accurately report where a vehicle is located and its travel speed, they provide zero insight into the physiological alertness and visual focus of the operator behind the wheel. When a driver falls asleep or loses focus, accidents occur within seconds—long before any retrospective tracking system can register an anomaly.
+
+"\textbf{Safe Steer AI -- Driver Monitoring System}" is introduced as a comprehensive, real-time safety architecture engineered to protect drivers and commercial fleets using Computer Vision and edge-based artificial intelligence. The platform continuously monitors live video streams captured from in-cabin cameras, detecting subtle eye closure patterns and head orientation shifts without requiring invasive wearables. Safe Steer AI features an immediate, multi-tier intervention protocol that sounds progressive audio alerts, warning beeps, and klaxon alarms to break micro-sleep states. Concurrently, tamper-proof incident logs are securely recorded in an SQLite database, and an intuitive Flask-powered fleet manager dashboard provides administrators with real-time telemetry, driver management facilities, and forensic audit analytics.
+
+\section{Objectives}
+\begin{enumerate}
+\item \textbf{To provide real-time driver fatigue and drowsiness detection:}
+Develop an edge-capable computer vision system that captures live cabin camera frames and evaluates facial landmarks to detect drowsiness in sub-second intervals.
+
+\item \textbf{To implement precise Eye Aspect Ratio (EAR) tracking:}
+Employ OpenCV and MediaPipe facial mesh frameworks to calculate geometric eye-opening ratios and track sustained eyelid closures accurately across varying driver profiles.
+
+\item \textbf{To deploy multi-stage active auditory countermeasures:}
+Incorporate immediate intervention mechanisms comprising synthetic voice prompts, auditory pulse beeps, and emergency klaxon siren simulations to instantly re-engage drowsy drivers.
+
+\item \textbf{To simulate emergency safety escalation:}
+Provide simulated emergency rescue notifications and dispatch triggers to simulate organizational crisis handling when severe, unacknowledged fatigue episodes persist.
+
+\item \textbf{To construct a tamper-proof incident logging framework:}
+Store all safety violations, event classifications, timestamps, and severity levels in an organized SQLite database to prevent retrospective manipulation and maintain compliance records.
+
+\item \textbf{To design an administrative fleet manager dashboard:}
+Build a centralized, responsive web dashboard using Python Flask that allows fleet supervisors to manage driver accounts, monitor fleet health, view incident alerts, and perform safety audits.
+
+\item \textbf{To provide a dedicated driver interface:}
+Equip drivers with an intuitive console to view assigned vehicle details, inspect personal safety scores, verify diagnostic audio subsystems, and review clean driving histories.
+\end{enumerate}
+
+% ------------------- CHAPTER 2: LITERATURE REVIEW -------------------
+\chapter{LITERATURE REVIEW}
+
+The deployment of computer vision and deep learning techniques for driver drowsiness and distraction detection has gathered significant momentum in modern intelligent transportation systems. This section analyzes key contemporary works published between 2024 and 2026.
+
+\section{Real-Time Driver Drowsiness Detection Using Transformer Architectures}
+
+\hspace{1cm}O. F. Hassan, A. F. Ibrahim, A. Gomaa, M. A. Makhlouf, and B. Hafiz (2025) investigate cutting-edge deep learning architectures for driver monitoring in their study published in \textit{Scientific Reports} \cite{ref_transformer}. The authors explore Vision Transformers (ViT) and Swin Transformers in comparison with classical Convolutional Neural Networks, including VGG19, DenseNet169, ResNet50V2, and MobileNet. The study utilizes eye images drawn from the benchmark MRL Eye Dataset, subjected to extensive normalization, augmentation, and Haar Cascade eye region extraction. Experimental evaluations demonstrate that the Vision Transformer achieves 99.15\% classification accuracy, while the Swin Transformer reaches 99.03\% accuracy, displaying high resilience across differing ambient lighting conditions. However, the authors note that Vision Transformers require significant computational resources, massive training datasets, and remain susceptible to severe visual occlusion, such as reflective sunglasses and extreme head rotation. This research underscores the viability of eye classification while highlighting the necessity for lightweight edge models in practical deployments.
+
+\section{Driver Drowsiness Shield (DDSH): Real-Time Detection System}
+
+\hspace{1cm}A. Bhanja, D. Parhi, D. Gajendra, K. Sinha, and A. K. Sahoo (2025) propose the "Driver Drowsiness Shield" (DDSH) in \textit{ROBOMECH Journal} \cite{ref_ddsh}. The authors employ transfer learning on a MobileNet CNN architecture trained on the MRL Eye Dataset to classify eye states into binary open and closed conditions. The classification pipeline is integrated with an active video capture and alarm trigger mechanism. The DDSH system achieved an accuracy of 90.0\%, a precision of 100\%, a recall of 83.3\%, and an F1-score of 90.9\% during real-time evaluations. While MobileNet exhibits lower latency suitable for resource-constrained edge hardware, its accuracy is comparatively lower than heavy transformer models, and detection accuracy fluctuates under sudden illumination variations, driver spectacle reflections, and facial obstructions. This study reinforces Safe Steer AI's approach of combining lightweight facial landmark extraction with progressive multi-stage alerting.
+
+\section{Dynamic Driver Drowsiness Detection with Attention-Enhanced CNNs}
+
+\hspace{1cm}A. A. Abd El-Nabi et al. (2026) present an attention-enhanced convolutional neural network framework designed for real-time driver monitoring and highway safety \cite{ref_attention_cnn}. The researchers benchmark pre-trained architectures (VGG16, VGG19, ResNet, DenseNet) against a custom-designed Attention-Based CNN model using facial landmark tracking and eye closure and yawning dynamics extracted from the NTHU-DDD benchmark dataset. The proposed attention mechanism effectively emphasizes eye and mouth coordinate regions, attaining an accuracy of 99.63\% with near-perfect precision, recall, and F1-score. The authors point out that single-indicator models often struggle when drivers wear tinted spectacles or face variable cabin lighting, suggesting that real-world deployment requires optimized hybrid processing and multimodal safety integration.
+
+\section{Systematic Review of Deep Learning-Based Driver Drowsiness Detection}
+
+\hspace{1cm}J. Fonseca and J. C. Ferreira (2025) present a comprehensive systematic review adhering to PRISMA 2020 guidelines in \textit{Applied Sciences} \cite{ref_review}. The survey synthesizes 81 peer-reviewed studies published between 2015 and 2025 covering CNNs, Recurrent Neural Networks (RNN), Long Short-Term Memory (LSTM) networks, Transformers, and hybrid architectures. The authors establish that while median accuracy across deep learning models routinely exceeds 95\% under simulated laboratory datasets, notable gaps persist in real-world deployment. These shortcomings include lack of demographic and age diversity in training benchmarks, inconsistent metric evaluations, limited transparency regarding privacy preservation, and weak validation in commercial vehicles. Their analysis emphasizes the need for practical, tamper-proof, and explainable safety platforms.
+
+\section{Literature Comparison Summary}
+Table \ref{tab:lit_review} provides a structured comparison of the literature reviewed, outlining their methodology, outcomes, and identified limitations.
+
+\begin{table}[H]
+\centering
+\caption{Summary of Literature Review on Driver Drowsiness Detection}
+\label{tab:lit_review}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{3.8cm}|c|p{4.2cm}|p{3.8cm}|p{4.2cm}|}
+\hline
+\textbf{Paper Title} & \textbf{Year} & \textbf{Methodology} & \textbf{Key Results} & \textbf{Limitations} \\
+\hline \hline
+Real-Time Driver Drowsiness Detection Using Transformer Architectures \cite{ref_transformer} & 2025 & Vision Transformer (ViT), Swin Transformer, VGG19, DenseNet169 on MRL Eye Dataset & ViT: 99.15\% accuracy; Swin: 99.03\% accuracy under diverse lighting & High computational overhead; susceptible to occlusions and sunglasses \\
+\hline
+Driver Drowsiness Shield (DDSH) \cite{ref_ddsh} & 2025 & Transfer learning with MobileNet CNN for open/closed eye classification & 90.0\% accuracy, 100\% precision, 83.3\% recall, 90.9\% F1-score & Lower accuracy than transformer models; sensitive to driver spectacle glare \\
+\hline
+Dynamic Drowsiness Detection with Attention-Enhanced CNNs \cite{ref_attention_cnn} & 2026 & Attention-based CNN with facial landmark and yawning extraction on NTHU-DDD & 99.63\% accuracy with near-perfect recall and F1-score & Requires optimized edge hardware and multimodal validation \\
+\hline
+Systematic Review of Deep Learning Models \cite{ref_review} & 2025 & PRISMA 2020 review of 81 papers spanning CNN, RNN, LSTM, and Transformers & Median accuracy and F1-score $>0.95$ across simulated environments & Lack of demographic diversity, privacy transparency, and fleet integration \\
+\hline
+\end{tabular}}
+\end{table}
+
+% ------------------- CHAPTER 3: PROBLEM DEFINITION -------------------
+\chapter{PROBLEM DEFINITION AND MOTIVATIONS}
+
+\section{Existing System}
+In the majority of contemporary commercial transportation and logistics businesses, driver monitoring is conducted through decentralized, passive mechanisms. Fleet operators primarily depend on:
+\begin{itemize}
+    \item \textbf{Basic GPS Tracking:} Telematics units transmit periodic coordinates, route paths, and instantaneous speeds. While helpful for logistics routing, GPS data cannot infer driver alertness.
+    \item \textbf{Post-Accident Logging:} Digital Tachographs and Electronic Logging Devices (ELD) log engine runtime and driving hours, which are inspected only after regulatory audits or traffic collisions.
+    \item \textbf{Periodic Check-ins:} Fleet dispatchers call drivers over mobile phones to verify status, an ironic practice that actively increases distraction while driving.
+    \item \textbf{Wearable Sensors:} Some research prototypes require biometric headbands or smart rings to monitor pulse and skin conductance. Drivers find these uncomfortable and frequently forget or refuse to wear them during long shifts.
+\end{itemize}
+
+\section{Limitations of Existing Systems}
+The gaps identified in conventional fleet monitoring frameworks include:
+\begin{itemize}
+    \item \textbf{Lack of Real-Time Cabin Awareness:} Conventional telematics track the vehicle's external position rather than the operator's physiological state.
+    \item \textbf{Inability to Prevent Sudden Crashes:} Retrospective logs and speed indicators provide zero warning when a driver drifts into microsleep.
+    \item \textbf{Absence of Instant Multi-Stage Countermeasures:} Existing tracking units do not provide progressive audio warnings or horn sirens inside the cabin to shock drowsy drivers back to alertness.
+    \item \textbf{Vulnerability to Data Tampering:} Paper logs or standard unencrypted fleet databases are prone to retroactive alterations and post-incident dispute.
+    \item \textbf{Disjointed Management Interfaces:} Fleet managers lack a unified platform that connects live video inference, vehicle assignments, driver records, and incident histories.
+\end{itemize}
+
+\section{Problem Statement}
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textit{To design and build an AI-based system that detects driver drowsiness in real-time using live video feeds and visual tracking, helping fleet managers prevent accidents by sending instant audio alerts and saving tamper-proof incident logs.}
+}}
+\end{center}
+
+\section{Proposed Solution}
+\par
+Safe Steer AI addresses these challenges through an end-to-end computer vision and web-based fleet safety platform. The system operates as follows:
+\begin{enumerate}
+    \item \textbf{Continuous Live Stream Ingestion:} Captures and analyzes high-frame-rate video feeds from an in-cabin webcam or embedded camera.
+    \item \textbf{Facial Landmark Tracking:} Utilizes OpenCV and MediaPipe Face Mesh to map 468 facial landmark coordinates in real time.
+    \item \textbf{Eye Aspect Ratio (EAR) Computation:} Continuously calculates bilateral eyelid distance against horizontal eye length to detect micro-blinks and prolonged eye closure.
+    \item \textbf{Multi-Stage Audio Alert Protocol:} Immediately triggers progressive synthetic audio alarms—ranging from gentle voice prompts to loud alert beeps and pulsed klaxon sirens—upon detecting sustained drowsiness.
+    \item \textbf{Emergency Rescue Simulation:} Triggers simulated emergency supervisor escalation if fatigue persists unacknowledged.
+    \item \textbf{Tamper-Proof Incident Logging:} Automatically stores every violation event with timestamp, vehicle number, and distraction category in an SQLite database.
+    \item \textbf{Unified Fleet Management Portal:} Provides a responsive Flask web application for drivers and administrators to inspect driving scores, incident logs, and vehicle assignments.
+\end{enumerate}
+
+% ------------------- CHAPTER 4: REQUIREMENTS ANALYSIS -------------------
+\chapter{REQUIREMENT ANALYSIS}
+
+\section{Hardware Requirements}
+\begin{itemize}
+    \item \textbf{Processor:} Intel Core i3 / AMD Ryzen 3 or higher (dual-core minimum, quad-core recommended for smooth video inference).
+    \item \textbf{Memory (RAM):} Minimum 4 GB RAM (8 GB recommended for concurrent video processing and web serving).
+    \item \textbf{Storage:} At least 10 GB of available disk space for system packages, runtime dependencies, and log records.
+    \item \textbf{Camera Sensor:} High-definition USB webcam or vehicle-mounted camera capable of minimum 720p resolution at 30 frames per second.
+    \item \textbf{Audio Output:} Cockpit speakers or high-decibel onboard buzzer for sounding multi-stage audio alerts.
+    \item \textbf{Display:} Visual monitor or dashboard display screen for viewing the management interface.
+    \item \textbf{Client Access Devices:} Optional smartphones, tablets, or remote laptops for accessing the web portal.
+\end{itemize}
+
+\section{Software Requirements}
+\begin{itemize}
+    \item \textbf{Operating System:} Microsoft Windows 10/11, Ubuntu Linux (18.04 LTS or newer), or macOS.
+    \item \textbf{Frontend Stack:} HTML5, CSS3, JavaScript (ES6+), Bootstrap framework for responsive UI design.
+    \item \textbf{Backend Framework:} Python 3.9+ with Flask web framework.
+    \item \textbf{Computer Vision \& AI Libraries:} OpenCV (\texttt{cv2}), Google MediaPipe (\texttt{mediapipe}), NumPy, SciPy.
+    \item \textbf{Audio Synthesis \& Playback:} PyGame audio mixer, Text-to-Speech (TTS) libraries (\texttt{pyttsx3} or web speech synthesis API).
+    \item \textbf{Database System:} SQLite (relational embedded database engine).
+    \item \textbf{Supported Web Browsers:} Google Chrome, Microsoft Edge, Mozilla Firefox.
+    \item \textbf{Integrated Development Environment (IDE):} Visual Studio Code (VS Code).
+\end{itemize}
+
+\section{Database Requirements}
+\begin{itemize}
+    \item \textbf{Engine:} SQLite relational database management system.
+    \item \textbf{Entity Storage:} Organizes data into relational entities including companies, users, vehicles, monitoring logs, incident reports, emergency responses, and driver history.
+    \item \textbf{Integrity and Constraints:} Enforces primary key uniqueness, foreign key relationships, and timestamping on all events.
+    \item \textbf{Tamper-Proof Logging:} Prevents retroactive deletion or unauthorized manipulation of incident logs to support forensic audits.
+    \item \textbf{Data Operations:} Supports performant CRUD (Create, Read, Update, Delete) operations with indexed queries for fast incident history retrieval.
+\end{itemize}
+
+\section{Functional Requirements}
+\begin{enumerate}
+    \item \textbf{Driver Account Management:} Enables administrators to register, update, view, and delete employee driver profiles with secure credential management.
+    \item \textbf{Driver Authentication:} Provides secure authentication for drivers and fleet managers with role-based routing.
+    \item \textbf{Real-Time Drowsiness Detection:} Continuously tracks facial landmarks and identifies eyelid closures exceeding the calibrated temporal threshold.
+    \item \textbf{Distraction \& Phone Detection:} Recognizes prolonged gaze-away angles and mobile phone usage within the driver cockpit.
+    \item \textbf{Multi-Tier Audio Warning Generation:} Triggers progressive auditory alerts, including synthesized voice commands, hazard beeps, and klaxon horn sirens.
+    \item \textbf{Emergency Rescue Simulation:} Initiates simulated emergency dispatch protocols when severe drowsiness continues unchecked.
+    \item \textbf{Tamper-Proof Incident Logging:} Records every fatigue event with date, time, vehicle ID, driver ID, duration, and severity level.
+    \item \textbf{Fleet Management Dashboard:} Offers fleet administrators an interactive interface to view vehicle telemetry, live alert feeds, and compliance reports.
+    \item \textbf{Driver Self-Service Console:} Allows drivers to inspect assigned vehicle parameters, run audio diagnostics, and review personal trip safety histories.
+\end{enumerate}
+
+\section{Non-Functional Requirements}
+\begin{enumerate}
+    \item \textbf{Performance:} The computer vision pipeline must process camera video frames at a minimum of 20--30 frames per second with sub-second drowsiness detection latency ($< 300$ ms).
+    \item \textbf{Security:} Passwords and sensitive company credentials must be stored securely using cryptographic hashing; role-based access must prevent drivers from modifying logs.
+    \item \textbf{Scalability:} The architectural framework must support scaling across multiple company fleets, hundreds of vehicles, and concurrent driver sessions.
+    \item \textbf{Usability:} Both the driver cockpit console and administrative portal must provide clean, distraction-free visual presentation with clear status indicators.
+    \item \textbf{Reliability:} The fatigue detection algorithms must maintain high precision and recall while minimizing false alarms caused by normal blinking or conversational speech.
+    \item \textbf{Responsiveness:} The web user interface must render smoothly on standard desktop monitors, vehicle-mounted head units, tablets, and smartphones.
+\end{enumerate}
+
+% ------------------- CHAPTER 5: DESIGN AND IMPLEMENTATION -------------------
+\chapter{DESIGN AND IMPLEMENTATION}
+
+\section{Architecture Overview}
+Safe Steer AI follows a modular client-server web architecture designed for lightweight execution and dependable fleet oversight. The system connects an in-cabin computer vision pipeline with a Flask application server and an SQLite database. 
+
+The architecture is organized into six interconnected operational tiers:
+\begin{enumerate}
+    \item \textbf{User Layer:} Fleet managers and drivers access the platform through standard web browsers to register vehicles, run diagnostics, and monitor safety alerts.
+    \item \textbf{Frontend Layer:} Built with responsive HTML, CSS, JavaScript, and Bootstrap, delivering driver portals, cockpit diagnostic panels, and fleet administrative consoles.
+    \item \textbf{Backend Layer (Flask):} Orchestrates routing, user authentication, live camera feed streaming, audio alert triggering, and incident logging logic.
+    \item \textbf{Database Layer (SQLite):} Delivers ACID-compliant relational data persistence for drivers, vehicles, distraction logs, incident reports, and audit trails.
+    \item \textbf{Computer Vision Module:} Ingests camera streams, performs facial mesh landmark mapping via OpenCV and MediaPipe, and executes sub-second Eye Aspect Ratio (EAR) calculations.
+    \item \textbf{Reports \& Analytics Module:} Aggregates driving violations, compiles incident frequencies, and generates risk level assessments for fleet supervisors.
+\end{enumerate}
+
+\section{System Architecture}
+Figure \ref{fig:sys_arch} illustrates the complete system architecture of Safe Steer AI, depicting the data flow from in-cabin video capture to alerting logic, incident logging, database persistence, and administrative dashboard consumption.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{system architecture.png}
+    \caption{System Architecture of Safe Steer AI}
+    \label{fig:sys_arch}
+\end{figure}
+
+\section{Module Description}
+The core operational logic of Safe Steer AI is divided into seven modular components:
+\begin{enumerate}
+    \item \textbf{Frontend UI Module:} Provides responsive web interfaces for drivers and fleet managers, displaying vehicle statuses, safety alerts, diagnostic suites, and reports.
+    \item \textbf{Driver Management Module:} Manages employee driver records, company credentials, vehicle assignments, and role-based permissions.
+    \item \textbf{Monitoring \& Alert Module:} Analyzes live video feeds in real time and coordinates multi-stage audio responses including voice prompts, acoustic beeps, and klaxon sirens.
+    \item \textbf{Drowsiness Detection Module:} Uses OpenCV and MediaPipe to detect facial landmarks, measuring eye distances to identify sustained closure and microsleep.
+    \item \textbf{Incident Logging Module:} Captures event classifications, timestamps, durations, and severity levels, committing tamper-proof records to the database.
+    \item \textbf{Database Module:} Utilizes SQLite to manage relational entities and provide fast indexed lookups for fleet audits and history retrieval.
+    \item \textbf{Reports \& Analytics Module:} Analyzes driver behavioral trends, calculates clean driving scores, and compiles safety summaries for fleet managers.
+\end{enumerate}
+
+\section{Use Case Diagram}
+The interactions between primary system actors—\textbf{Driver (Employee)} and \textbf{Fleet Manager (Admin)}—and the system capabilities are depicted in Figure \ref{fig:use_case}. Drivers authenticate, view assigned dashboards, launch real-time monitoring, receive audio alerts, and review personal incident logs. Administrators manage driver and vehicle profiles, supervise live alerts, and inspect fleet safety reports.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{use case.png}
+    \caption{Use Case Diagram for Safe Steer AI}
+    \label{fig:use_case}
+\end{figure}
+
+\section{Data Flow Diagrams (DFD)}
+The operational flow of data across the Safe Steer AI platform is represented using Level 0 and Level 1 Data Flow Diagrams.
+
+\subsection{Level 0 DFD (Context Analysis)}
+Figure \ref{fig:dfd0} shows the Level 0 Context Diagram representing the central Safe Steer AI system interacting with drivers and administrators.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{dfd level 0.png}
+    \caption{Data Flow Diagram -- Level 0}
+    \label{fig:dfd0}
+\end{figure}
+
+\subsection{Level 1 DFD}
+Figure \ref{fig:dfd1} presents the Level 1 DFD, tracing authentication (Process 1.0), video monitoring (Process 2.0), incident handling (Process 3.0), emergency call rescue simulation (Process 4.0), driver/vehicle profile management (Process 5.0), and analytics monitoring (Process 6.0).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{Level 1.png}
+    \caption{Data Flow Diagram -- Level 1}
+    \label{fig:dfd1}
+\end{figure}
+
+\section{Relational Database Schema}
+The Safe Steer AI database is designed around normalized relational entities to ensure data integrity and traceability. The primary entities and relationships are:
+\begin{itemize}
+    \item \textbf{companies:} Stores company identification, name, administrative user pointer, and creation timestamp.
+    \item \textbf{users:} Stores user credentials, full name, email, hashed password, role (Driver or Admin), and company reference.
+    \item \textbf{vehicles:} Contains vehicle identification, license plate, vehicle model, assigned driver foreign key, and registration date.
+    \item \textbf{monitoring\_logs:} Captures real-time raw telemetry from the computer vision engine, including event type, timestamp, drowsiness level, distraction type, and confidence score.
+    \item \textbf{incident\_reports:} Compiles confirmed safety incidents, linking the monitoring log, driver ID, vehicle ID, incident type, response triggered, and severity ranking.
+    \item \textbf{emergency\_responses:} Manages emergency call simulation records, escalation logs, response timestamps, and dispatch status.
+    \item \textbf{driver\_history:} Aggregates indexed safety events to provide rapid, read-only audit retrieval for drivers and fleet managers.
+\end{itemize}
+
+Figure \ref{fig:relational_schema} presents the complete Relational Schema diagram for Safe Steer AI.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{relational schema.png}
+    \caption{Relational Database Schema Diagram}
+    \label{fig:relational_schema}
+\end{figure}
+
+\section{Project Timeline and Gantt Chart}
+The project was executed over a structured 16-week timeline spanning July 2026 to October 2026, punctuated by four key milestones: M1 (Requirement Complete), M2 (Model Logic Ready), M3 (Full System Integration), and M4 (Final Project Review). Figure \ref{fig:gantt_chart} illustrates the detailed schedule.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{gantt chart.png}
+    \caption{Project Timeline and Gantt Chart}
+    \label{fig:gantt_chart}
+\end{figure}
+
+% ------------------- CHAPTER 6: IMPLEMENTATION & TESTING -------------------
+\chapter{REPORT OF PROJECT IMPLEMENTATION}
+
+\section{Implementation Details}
+The development of Safe Steer AI was carried out using Python 3.9+, OpenCV, MediaPipe, Flask, and SQLite.
+
+\subsection{Eye Aspect Ratio (EAR) Algorithm}
+The core fatigue detection mechanism evaluates the geometric deformation of the eyelids. For each detected eye region, six cardinal 2D landmark coordinates $(p_1, p_2, p_3, p_4, p_5, p_6)$ are tracked. The Eye Aspect Ratio (EAR) is defined as:
+\begin{equation}
+\text{EAR} = \frac{||p_2 - p_6|| + ||p_3 - p_5||}{2 \cdot ||p_1 - p_4||}
+\end{equation}
+When the eye is open, the EAR hovers around a stable calibrated value (typically $0.28 - 0.35$). When the eyelids close during a blink or micro-sleep episode, the vertical Euclidean distances $(||p_2 - p_6||, ||p_3 - p_5||)$ approach zero, causing the EAR to plummet below a designated threshold (e.g., $0.21$). If the EAR remains below this threshold for a consecutive frame count exceeding 20--30 frames ($\sim 1.0 - 1.5$ seconds), the incident engine classifies the event as drowsiness.
+
+\subsection{Multi-Stage Alert Logic}
+The alerting module incorporates tiered auditory escalation:
+\begin{itemize}
+    \item \textbf{Stage 1 (Warning Beep):} Triggered upon brief closure detection to prompt immediate driver reorientation.
+    \item \textbf{Stage 2 (Voice Notification):} Synthesized vocal command (\textit{"Warning: Drowsiness detected, please focus on the road!"}) dispatched when inattention continues.
+    \item \textbf{Stage 3 (Klaxon Siren \& Horn):} High-decibel pulsed klaxon siren initiated for severe, persistent micro-sleep.
+    \item \textbf{Stage 4 (Emergency Simulation):} Dispatches simulated telemetry alerts to the fleet manager dashboard.
+\end{itemize}
+
+\section{Testing and Verification}
+Rigorous unit, integration, and system testing was performed to validate stability, responsiveness, and accuracy.
+
+\subsection{Unit Testing}
+Unit testing examined individual software modules in isolation. Table \ref{tab:unit_tests} summarizes the unit test cases.
+
+\begin{table}[H]
+\centering
+\caption{Unit Test Cases and Results}
+\label{tab:unit_tests}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|p{5cm}|p{7cm}|c|}
+\hline
+\textbf{Test ID} & \textbf{Component Tested} & \textbf{Expected Result} & \textbf{Status} \\
+\hline \hline
+UT-01 & Driver Registration & Creates driver profile with securely hashed password. & Pass \\
+\hline
+UT-02 & User Authentication & Authenticates valid credentials and rejects incorrect passwords. & Pass \\
+\hline
+UT-03 & Face Landmark Extraction & Accurately tracks 468 facial points using MediaPipe mesh. & Pass \\
+\hline
+UT-04 & EAR Calculation & Computes correct aspect ratio for open and closed eye states. & Pass \\
+\hline
+UT-05 & Threshold Triggering & Initiates alert event when EAR remains $<0.21$ for $>25$ frames. & Pass \\
+\hline
+UT-06 & Audio Alert Dispatch & Plays designated synthetic voice and buzzer alarms without latency. & Pass \\
+\hline
+UT-07 & Incident Log Insertion & Commits timestamped safety records into SQLite database. & Pass \\
+\hline
+UT-08 & Vehicle Assignment Query & Correctly retrieves vehicle registration linked to driver ID. & Pass \\
+\hline
+\end{tabular}}
+\end{table}
+
+\subsection{Integration Testing}
+Integration testing verified the coordinated behavior of the computer vision engine, Flask API endpoints, database operations, and browser interface. Table \ref{tab:integration_tests} shows the integration test outcomes.
+
+\begin{table}[H]
+\centering
+\caption{Integration Test Cases and Results}
+\label{tab:integration_tests}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|p{5.5cm}|p{6.5cm}|c|}
+\hline
+\textbf{Test ID} & \textbf{Interaction Scope} & \textbf{Expected Result} & \textbf{Status} \\
+\hline \hline
+IT-01 & Video Capture to CV Pipeline & Live camera stream feeds frames smoothly to landmark detector. & Pass \\
+\hline
+IT-02 & Detection to Audio Subsystem & Drowsiness trigger instantly fires localized audio warnings. & Pass \\
+\hline
+IT-03 & Alert Logic to Database & Distraction episodes generate confirmed incident reports in SQLite. & Pass \\
+\hline
+IT-04 & Database to Driver Console & Driver dashboard dynamically renders logged trip history. & Pass \\
+\hline
+IT-05 & Fleet Admin to Vehicle Registry & Admin vehicle assignments correctly reflect on driver profiles. & Pass \\
+\hline
+IT-06 & Emergency Trigger to Webhook & Critical incident triggers simulated emergency escalation routine. & Pass \\
+\hline
+\end{tabular}}
+\end{table}
+
+\subsection{System Testing}
+System testing evaluated end-to-end operational performance, reliability, and security of the deployed application under realistic simulation. Table \ref{tab:system_tests} presents the system test results.
+
+\begin{table}[H]
+\centering
+\caption{System Test Cases and Results}
+\label{tab:system_tests}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|p{5.5cm}|p{6.5cm}|c|}
+\hline
+\textbf{Test ID} & \textbf{Evaluation Scenario} & \textbf{Expected Result} & \textbf{Status} \\
+\hline \hline
+ST-01 & End-to-End Fatigue Monitoring & Successfully detects prolonged eye closures and triggers alerts. & Pass \\
+\hline
+ST-02 & False Alarm Minimization & Normal blinks and conversation do not trigger fatigue alarms. & Pass \\
+\hline
+ST-03 & Role-Based Access Security & Driver accounts cannot access administrative fleet management panels. & Pass \\
+\hline
+ST-04 & Audit Trail Immutability & Incident history cannot be modified or deleted by driver users. & Pass \\
+\hline
+ST-05 & Responsive Web Rendering & Interface displays cleanly across desktop, tablet, and mobile views. & Pass \\
+\hline
+ST-06 & Continuous Session Stability & System runs uninterrupted over extended video monitoring sessions. & Pass \\
+\hline
+\end{tabular}}
+\end{table}
+
+% ------------------- CHAPTER 7: RESULTS AND DISCUSSION -------------------
+\chapter{RESULTS AND DISCUSSION}
+
+\section{Advantages of Safe Steer AI}
+\begin{itemize}
+    \item \textbf{Proactive Accident Prevention:} Detects driver fatigue at the onset of microsleep, preventing collisions before they materialize.
+    \item \textbf{Non-Intrusive Monitoring:} Operates through a contactless optical camera feed without requiring uncomfortable wearable devices.
+    \item \textbf{Sub-Second Response Latency:} Optimized computer vision models calculate Eye Aspect Ratios and initiate alerts within milliseconds.
+    \item \textbf{Progressive Multi-Stage Alerting:} Combines gentle audio chimes, synthesized speech, and piercing klaxon alarms to ensure driver arousal.
+    \item \textbf{Tamper-Proof Audit Logging:} Stores verifiable chronological incident logs in SQLite, establishing definitive accountability for safety audits.
+    \item \textbf{Comprehensive Fleet Management:} Empowers fleet supervisors with real-time visibility over drivers, vehicles, and fleet risk trends.
+    \item \textbf{Cost-Effective Deployment:} Operates on standard off-the-shelf consumer webcams and accessible computing hardware without specialized radar equipment.
+\end{itemize}
+
+\section{Limitations}
+\begin{itemize}
+    \item \textbf{Visual Occlusions:} Heavy, opaque sunglasses or thick spectacle frames can partially obstruct eye landmark extraction.
+    \item \textbf{Extreme Lighting Variations:} Severe glare or complete nighttime darkness without infrared illumination can degrade optical camera tracking.
+    \item \textbf{Hardware Processing Dependence:} High-resolution multi-camera feeds require consistent compute power to sustain 30 FPS processing.
+    \item \textbf{Network Connectivity for Remote Telemetry:} While edge audio alerts operate completely offline, centralized dashboard updates require periodic network connectivity.
+\end{itemize}
+
+\section{System Screenshots}
+This section presents the actual user interfaces and operational views of the Safe Steer AI application.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/home.png}
+    \caption{Safe Steer AI -- Landing Page}
+    \label{fig:screen_home}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/ai_guardian.png}
+    \caption{Safe Steer AI -- AI Driver Guardian Feature Showcase}
+    \label{fig:screen_guardian}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/driver_reg.png}
+    \caption{Driver Account Registration Portal}
+    \label{fig:screen_reg}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/driver_login.png}
+    \caption{Driver Secure Authentication Portal (SentriDrive)}
+    \label{fig:screen_login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/driver_dashboard.png}
+    \caption{Driver Console \& Robotic Audio Diagnostics Suite}
+    \label{fig:screen_dash}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{Screenshots/trip_incidents.png}
+    \caption{Driver Trip Incident History \& Clean Safety Score}
+    \label{fig:screen_history}
+\end{figure}
+
+% ------------------- CHAPTER 8: CONCLUSION AND FUTURE SCOPE -------------------
+\chapter{CONCLUSION AND FUTURE SCOPE}
+
+\section{Conclusion}
+\par
+The \textbf{"Safe Steer AI -- Driver Monitoring System"} successfully delivers a comprehensive, real-time safety architecture addressing the critical threat of driver fatigue in commercial and passenger transit. By integrating computer vision algorithms with OpenCV and MediaPipe Face Mesh, the system achieves sub-second tracking of facial landmarks and continuous Eye Aspect Ratio (EAR) computation from standard video feeds. 
+
+The platform bridges the gap between passive tracking and active in-cabin protection through an immediate multi-stage audio warning mechanism, complete with synthesized speech, alarm tones, and emergency simulation protocols. Integrated with an SQLite database and an intuitive Flask web application, Safe Steer AI records tamper-proof incident logs, safeguards corporate compliance, and equips fleet managers with actionable safety intelligence. The project demonstrates how edge artificial intelligence can be practically applied to protect drivers, preserve cargo, and prevent fatal vehicular accidents.
+
+\section{Future Scope}
+\begin{enumerate}
+    \item \textbf{Dedicated Edge Hardware Deployment:} Porting the vision inference pipeline to dedicated micro-computing units, such as Raspberry Pi 5 or NVIDIA Jetson Nano, for embedded in-vehicle installation.
+    \item \textbf{Infrared (IR) Night-Vision Integration:} Equipping the optical pipeline with near-infrared camera sensors to ensure uncompromised eye-tracking accuracy in complete night darkness.
+    \item \textbf{OBD-II Vehicle Telemetry Integration:} Connecting with onboard vehicle diagnostics (OBD-II) to correlate steering wheel jerk, throttle variation, and lane-departure telemetry with fatigue markers.
+    \item \textbf{Multimodal Biometric Fusion:} Incorporating heart-rate variability (HRV) and seat pressure sensors to complement optical computer vision for high-consequence transport fleets.
+    \item \textbf{Automated Cloud Telemetry \& Mobile Notifications:} Enabling cloud-synchronized fleet oversight with automated SMS and push notifications to emergency contacts and dispatch supervisors.
+\end{enumerate}
+
+\vspace{1.5cm}
+
+% ------------------- REFERENCES -------------------
+\renewcommand{\bibname}{\uppercase{REFERENCES}}
+\begin{thebibliography}{999}
+\addcontentsline{toc}{chapter}{\hspace{0.19in} REFERENCES}
+
+\bibitem{ref_transformer}
+O. F. Hassan, A. F. Ibrahim, A. Gomaa, M. A. Makhlouf, and B. Hafiz, ``Real-time driver drowsiness detection using transformer architectures: a novel deep learning approach,'' \textit{Scientific Reports}, vol. 15, no. 1, Art. no. 17493, May 2025, doi: 10.1038/s41598-025-02111-x.
+
+\bibitem{ref_ddsh}
+A. Bhanja, D. Parhi, D. Gajendra, K. Sinha, and A. K. Sahoo, ``Driver drowsiness shield (DDSH): a real-time driver drowsiness detection system,'' \textit{ROBOMECH Journal}, vol. 12, no. 1, Art. no. 18, May 2025, doi: 10.1186/s40648-025-00307-4.
+
+\bibitem{ref_attention_cnn}
+A. A. Abd El-Nabi et al., ``Dynamic Driver Drowsiness Detection with Attention-Enhanced CNNs for Real-Time Monitoring and Road Safety Applications,'' \textit{Scientific Reports}, vol. 16, 2026.
+
+\bibitem{ref_review}
+J. Fonseca and J. C. Ferreira, ``Drowsiness Detection in Drivers: A Systematic Review of Deep Learning-Based Models,'' \textit{Applied Sciences}, vol. 15, no. 16, Art. no. 9018, 2025.
+
+\end{thebibliography}
+
+\end{document}
